@@ -19,8 +19,29 @@ fun main() {
     val assistiramAmbosSet = mutableSetOf<String>()
     assistiramAmbosSet.addAll(assistiramCursoAndroidSet)
     assistiramAmbosSet.addAll(assistiramCursoKotlinSet)
+    println("Adicionou os dois conjuntos set> $assistiramAmbosSet")
     assistiramAmbosSet.add("Ana")
     assistiramAmbosSet.add("Ana")
     println("Assistiram ambos com Set> $assistiramAmbosSet")
+
+    println("Operador + > ${ assistiramCursoKotlinSet + assistiramCursoAndroidSet }")
+    //une os dois conjuntos(Set)
+    println("union> ${ assistiramCursoKotlinSet union assistiramCursoAndroidSet }")
+    println(assistiramCursoKotlinSet union(assistiramCursoAndroidSet))
+    println(assistiramCursoKotlinSet.union(assistiramCursoAndroidSet))
+
+    println("operador - >${ assistiramCursoKotlinSet - assistiramCursoAndroidSet }")
+    //subtract =
+    println("subtract> ${ assistiramCursoKotlinSet subtract assistiramCursoAndroidSet }")
+
+    //intersect = pego os elementos iguais nos dois conjuntos
+    println("intersect> ${ assistiramCursoKotlinSet intersect assistiramCursoAndroidSet }")
+
+    val assistiramList = assistiramAmbosSet.toMutableList()
+    assistiramList.add("Alex")
+    println(assistiramList)
+    println(assistiramList.toList())
+
+
 }
 
