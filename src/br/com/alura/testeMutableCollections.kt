@@ -6,7 +6,7 @@ fun main() {
         Pair(2, 64.0),
         3 to 50.0,
         4 to 100.0,
-        5 to 150.0,
+        5 to 100.0,
         6 to 80.0
     )
 
@@ -46,9 +46,34 @@ fun main() {
     val pedidosAcima = pedidos.filterValues { valor ->
         valor > 70
     }
-
     println("Pedidos acima> $pedidosAcima")
 
+    //juntar dois maps, aqui ele cria um novo map
+    println(pedidos + mapOf(7 to 90.0, 8 to 20.0))
+    println(pedidos)
+
+    //remove os elementos do map e retorna um novo map
+    println(pedidos - listOf(6, 5))
+    println(pedidos)
+
+//    pedidos.putAll(setOf<Pair<Int, Double>>(7 to 90.0, 8 to 20.0, 8 to 20.0))
+    pedidos += setOf<Pair<Int, Double>>(7 to 90.0, 8 to 20.0, 8 to 20.0)
+    println(pedidos)
+
+    //removendo os key e values
+    pedidos.keys.remove(1)
+    println(pedidos)
+
+    pedidos.values.remove(50.0)
+    println(pedidos)
+
+    //se tiver dois valores iguais, vai remover o primeiro que achar.
+    pedidos.values.remove(100.0)
+    println(pedidos)
+
+    //removendo pelo chave usando -=
+    pedidos -= 6
+    println(pedidos)
 
 }
 
