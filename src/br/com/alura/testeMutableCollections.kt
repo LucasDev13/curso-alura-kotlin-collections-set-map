@@ -1,7 +1,12 @@
 package br.com.alura
 
 fun main() {
-    val pedidos = mapOf(Pair(1, 20.0), Pair(2, 43.0), 3 to 50.0, 4 to 12.0)
+    val pedidos: MutableMap<Int, Double> = mutableMapOf(
+        Pair(1, 20.0),
+        Pair(2, 43.0),
+        3 to 50.0,
+        4 to 12.0
+    )
     //é mais comum utilizar o infix to, mas ele tem um problema de performance com maps com muitos valores.
     //Ele tem uma perca de performance.
     println("pedidos map> pedidos")
@@ -13,8 +18,33 @@ fun main() {
         println("pedidos $it")
     }
 
-    for (pedido: Map.Entry<Int, Double> in pedidos){
-        println("número do pedido: ${pedido.key}")
-        println("valor do pedido: ${pedido.value}")
+    for (p: Map.Entry<Int, Double> in pedidos){
+        println("número do pedido: ${p.key}")
+        println("valor do pedido: ${p.value}")
     }
+
+    pedidos[4] = 70.0
+    println(pedidos)
+    pedidos.put(5, 80.0)
+    println(pedidos)
+    pedidos[1] = 100.0
+    println(pedidos)
+    //putIfAbsent vai adicionar se a key e value não existir no map
+    pedidos.putIfAbsent(6, 200.0)
+    println(pedidos)
+    //se tenta atualizar, o map não vai fazer nada.
+    pedidos.putIfAbsent(6, 200.0)
+    println(pedidos)
+
+    //remove pela chave
+    pedidos.remove(6)
+    println(pedidos)
+
+    //remove se a key bater com o value. Neste caso não vai remover, porque 100 não é o valor de key 3
+    pedidos.remove(3, 100.0)
+    println(pedidos)
+
+
+
+
 }
