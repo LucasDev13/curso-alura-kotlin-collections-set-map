@@ -1,47 +1,20 @@
 package br.com.alura
 
 fun main() {
-    val assistiramCursoAndroid = listOf("Alex", "Fran", "Gui", "Maria")
-    val assistiramCursoKotlin = listOf("Alex", "Paulo", "Maria")
-//    val assistiramAmbos = mutableListOf<String>()
-    val assistiramAmbos = assistiramCursoAndroid + assistiramCursoKotlin
-//    assistiramAmbos.addAll(assistiramCursoAndroid)
-//    assistiramAmbos.addAll(assistiramCursoKotlin)
-    //vai mostrar os elementos repitidos.
-    println("assistiramAmbos repetido> $assistiramAmbos")
+    val pedidos = mapOf(Pair(1, 20.0), Pair(2, 43.0), 3 to 50.0, 4 to 12.0)
+    //é mais comum utilizar o infix to, mas ele tem um problema de performance com maps com muitos valores.
+    //Ele tem uma perca de performance.
+    println("pedidos map> pedidos")
 
-    //mostra somente os não repitidos.
-    println("Assistiram ambos distintos ${assistiramAmbos.distinct()}")
+    //para pegar um elemento do map, você precisa passar a key do map.
+    //mas esse retorno pode ser null porque ele não garante que tem um valor lá. Precisa tratar isso.
+    val pedido = pedidos[1]
+    pedido?.let {
+        println("pedidos $it")
+    }
 
-    val assistiramCursoAndroidSet: Set<String> = mutableSetOf<String>("Alex", "Fran", "Gui", "Maria")
-    val assistiramCursoKotlinSet: Set<String> = mutableSetOf("Alex", "Paulo", "Maria")
-//    val assistiramAmbosSet: Set<String> = assistiramCursoAndroidSet + assistiramCursoKotlinSet
-    val assistiramAmbosSet = mutableSetOf<String>()
-    assistiramAmbosSet.addAll(assistiramCursoAndroidSet)
-    assistiramAmbosSet.addAll(assistiramCursoKotlinSet)
-    println("Adicionou os dois conjuntos set> $assistiramAmbosSet")
-    assistiramAmbosSet.add("Ana")
-    assistiramAmbosSet.add("Ana")
-    println("Assistiram ambos com Set> $assistiramAmbosSet")
-
-    println("Operador + > ${ assistiramCursoKotlinSet + assistiramCursoAndroidSet }")
-    //une os dois conjuntos(Set)
-    println("union> ${ assistiramCursoKotlinSet union assistiramCursoAndroidSet }")
-    println(assistiramCursoKotlinSet union(assistiramCursoAndroidSet))
-    println(assistiramCursoKotlinSet.union(assistiramCursoAndroidSet))
-
-    println("operador - >${ assistiramCursoKotlinSet - assistiramCursoAndroidSet }")
-    //subtract =
-    println("subtract> ${ assistiramCursoKotlinSet subtract assistiramCursoAndroidSet }")
-
-    //intersect = pego os elementos iguais nos dois conjuntos
-    println("intersect> ${ assistiramCursoKotlinSet intersect assistiramCursoAndroidSet }")
-
-    val assistiramList = assistiramAmbosSet.toMutableList()
-    assistiramList.add("Alex")
-    println(assistiramList)
-    println(assistiramList.toList())
-
-
+    for (pedido: Map.Entry<Int, Double> in pedidos){
+        println("número do pedido: ${pedido.key}")
+        println("valor do pedido: ${pedido.value}")
+    }
 }
-
