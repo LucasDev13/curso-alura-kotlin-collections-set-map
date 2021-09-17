@@ -3,48 +3,52 @@ package br.com.alura
 fun main() {
     val pedidos: MutableMap<Int, Double> = mutableMapOf(
         Pair(1, 20.0),
-        Pair(2, 43.0),
+        Pair(2, 64.0),
         3 to 50.0,
-        4 to 12.0
+        4 to 100.0,
+        5 to 150.0,
+        6 to 80.0
     )
-    //é mais comum utilizar o infix to, mas ele tem um problema de performance com maps com muitos valores.
-    //Ele tem uma perca de performance.
-    println("pedidos map> pedidos")
 
-    //para pegar um elemento do map, você precisa passar a key do map.
-    //mas esse retorno pode ser null porque ele não garante que tem um valor lá. Precisa tratar isso.
-    val pedido = pedidos[1]
-    pedido?.let {
-        println("pedidos $it")
+//    val valorPedido = pedidos.getValue(5)
+//    println(valorPedido)
+
+    //
+//    val mensagem: Double? = pedidos.getOrElse(0) { 0.0 }
+//    println(mensagem)
+
+    println(pedidos.getOrDefault(1, -1.0))
+    println(pedidos.getOrDefault(0, -1.0))
+
+    //todas as chaves
+    println(pedidos.keys)
+    for (numero in pedidos){
+        println("Pedido: $numero")
     }
 
-    for (p: Map.Entry<Int, Double> in pedidos){
-        println("número do pedido: ${p.key}")
-        println("valor do pedido: ${p.value}")
+    //todos os valores
+    println(pedidos.values)
+    for (valor in pedidos){
+        println("Valor do pedido: $valor")
     }
 
-    pedidos[4] = 70.0
-    println(pedidos)
-    pedidos.put(5, 80.0)
-    println(pedidos)
-    pedidos[1] = 100.0
-    println(pedidos)
-    //putIfAbsent vai adicionar se a key e value não existir no map
-    pedidos.putIfAbsent(6, 200.0)
-    println(pedidos)
-    //se tenta atualizar, o map não vai fazer nada.
-    pedidos.putIfAbsent(6, 200.0)
-    println(pedidos)
+    val pedidosFiltrados = pedidos.filter { (numero, valor) ->
+        numero % 2 == 0 && valor > 70.0
+    }
 
-    //remove pela chave
-    pedidos.remove(6)
-    println(pedidos)
+    println("Pedidos filtrados: $pedidosFiltrados")
 
-    //remove se a key bater com o value. Neste caso não vai remover, porque 100 não é o valor de key 3
-    pedidos.remove(3, 100.0)
-    println(pedidos)
+    val pedidosPares = pedidos.filterKeys { numero ->
+        numero % 2 == 0
+    }
+    println("Pedidos pares> $pedidosPares")
 
+    val pedidosAcima = pedidos.filterValues { valor ->
+        valor > 70
+    }
 
+    println("Pedidos acima> $pedidosAcima")
 
 
 }
+
